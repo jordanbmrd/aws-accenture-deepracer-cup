@@ -18,6 +18,7 @@ Nous avons entamé notre quête avec l'exploration des hyperparamètres suivants
 	<img src="assets/hyperparameters.png" width="300" />
 	<figcaption><em>Hyperparamètres du modèle final</em></figcaption>
 </figure>
+<br />
 
 1.  **Gradient descent batch size** : Nous avons commencé avec un batch size de 32, puis sommes rapidement passés à 64, permettant au modèle de trouver un équilibre entre la précision de l'estimation du gradient et l'utilisation efficace de la mémoire. Nous avons rapidement appris que des lots trop grands pourraient lisser les détails nécessaires pour l'apprentissage tandis que des lots trop petits pourraient conduire à une convergence erratique.
     
@@ -49,6 +50,7 @@ La prise de conscience de ces limitations a été un tournant. Nous avons décid
     <img src="assets/action_space.png" width="300" />
     <figcaption><em>Tableau des vitesses et angles autorisés</em></figcaption>
 </figure>
+<br />
 
 Le passage à des déplacements discrets a eu plusieurs avantages immédiats. Premièrement, cela a réduit le comportement erratique de la voiture, lui permettant de suivre des trajectoires plus directes et plus rapides. Deuxièmement, cela a permis une accélération plus cohérente, car le modèle pouvait maintenant se concentrer sur la sélection de la meilleure action prédéfinie pour une situation donnée, plutôt que d'ajuster constamment à des degrés infimes.
 
@@ -58,12 +60,13 @@ L'effet de ces changements a été clairement illustré dans les performances de
 	<img src="assets/first_training_reward_graph.png" width="300" />
 	<figcaption><em>Graphique de récompenses sur un des premiers modèles</em></figcaption>
 </figure>
+<br />
 
 <figure>
 	<img src="assets/final_training_reward_graph.png" width="300" />
 	<figcaption><em>Graphique de récompenses final</em></figcaption>
 </figure>
-
+<br />
 Cette phase d'optimisation a également été une période d'apprentissage intense pour nous en tant que concepteurs du modèle. Nous avons appris l'importance de l'équilibre entre la flexibilité et la contrainte dans la conception d'un système d'apprentissage par renforcement. Trop de flexibilité peut conduire à la confusion et à l'inefficacité, tandis que des contraintes appropriées peuvent guider l'agent vers des comportements plus optimaux.
 
 En fin de compte, l'adoption d'un modèle à déplacements discrets a été une décision déterminante, prouvant que la simplicité et la clarté de la structure peuvent souvent surpasser la complexité. Cela nous a préparés pour la phase finale de notre projet : la personnalisation de la fonction de récompense, qui s'est avérée être la clé de notre succès.
@@ -140,6 +143,7 @@ L'intégration de cette fonction de récompense personnalisée a conduit à des 
 	<img src="assets/final_training_reward_graph.png" width="300" />
 	<figcaption><em>Graphique de récompenses final</em></figcaption>
 </figure>
+<br />
 
 Nous avons observé que notre véhicule avait appris à naviguer sur la piste avec une bonne précision, évitant les excès qui avaient auparavant entravé ses performances. La fonction de récompense a effectivement aligné les objectifs d'apprentissage du modèle avec les exigences de la compétition, résultant en une conduite qui était fiable et plutôt rapide.
 
