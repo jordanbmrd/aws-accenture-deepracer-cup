@@ -15,7 +15,7 @@ L'apprentissage par renforcement est un domaine de l'intelligence artificielle o
 Nous avons entamé notre quête avec l'exploration des hyperparamètres suivants :
 
 <figure>
-	<img src="assets/hyperparameters.png" />
+	<img src="assets/hyperparameters.png" width="50" />
 	<figcaption>Hyperparamètres du modèle final</figcaption>
 </figure>
 
@@ -45,19 +45,19 @@ Dans notre exploration initiale, nous avons entraîné notre modèle en utilisan
 
 La prise de conscience de ces limitations a été un tournant. Nous avons décidé d'adopter une approche basée sur des actions discrètes, comme en témoigne notre tableau d'espaces d'actions, où chaque action était liée à un angle de braquage spécifique et à une vitesse définie. Ce cadre contraint a simplifié l'espace des actions, permettant au modèle de faire des choix plus stratégiques et délibérés.
 
-<img src="assets/action_space.png" />
+<img src="assets/action_space.png" width="50" />
 
 Le passage à des déplacements discrets a eu plusieurs avantages immédiats. Premièrement, cela a réduit le comportement erratique de la voiture, lui permettant de suivre des trajectoires plus directes et plus rapides. Deuxièmement, cela a permis une accélération plus cohérente, car le modèle pouvait maintenant se concentrer sur la sélection de la meilleure action prédéfinie pour une situation donnée, plutôt que d'ajuster constamment à des degrés infimes.
 
 L'effet de ces changements a été clairement illustré dans les performances de notre modèle. Les graphiques de récompense, qui suivaient les progrès au fil des itérations d'entraînement, ont montré une amélioration significative. Non seulement la voiture complétait la piste avec une plus grande cohérence, mais le temps nécessaire pour compléter le parcours a également diminué, nous rapprochant de notre objectif de vitesse et de précision.
 
 <figure>
-	<img src="assets/first_training_reward_graph.png" />
+	<img src="assets/first_training_reward_graph.png" width="50" />
 	<figcaption>Graphique de récompenses sur un des premiers modèles</figcaption>
 </figure>
 
 <figure>
-	<img src="assets/final_training_reward_graph.png" />
+	<img src="assets/final_training_reward_graph.png" width="50" />
 	<figcaption>Graphique de récompenses final</figcaption>
 </figure>
 
@@ -134,7 +134,7 @@ De plus, notre fonction de reward a été structurée autour de plusieurs compos
 L'intégration de cette fonction de récompense personnalisée a conduit à des améliorations tangibles. Les graphiques de récompense de notre modèle final ont mis en évidence une courbe d'apprentissage plus stable et une augmentation progressive des récompenses obtenues par l'agent, ce qui a indiqué une meilleure cohérence et efficacité dans la réalisation des tours de piste.
 
 <figure>
-	<img src="assets/final_training_reward_graph.png" />
+	<img src="assets/final_training_reward_graph.png" width="50" />
 	<figcaption>Graphique de récompenses final</figcaption>
 </figure>
 
