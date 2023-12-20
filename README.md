@@ -1,12 +1,12 @@
 # Introduction
 
-Dans le cadre du concours organisé par AWS et Accenture, nous avons eu l'opportunité unique de plonger dans le monde fascinant de l'apprentissage par renforcement en participant à la compétition AWS DeepRacer. Ce défi a consisté à développer et à affiner un modèle d'intelligence artificielle qui pilote de manière autonome un véhicule physique sur une piste de course. Mon coéquipier @dbsenzo, étudiant en ingénierie logicielle, et moi avons collaboré étroitement pour explorer les complexités de l'apprentissage par renforcement en utilisant l'environnement AWS DeepRacer.
+Dans le cadre du concours organisé par AWS et Accenture, nous avons eu l'opportunité de plonger dans le monde du Machine Learning en participant à la compétition AWS DeepRacer. Ce défi a consisté à développer et à affiner un modèle d'intelligence artificielle qui pilote de manière autonome un véhicule physique sur une piste de course. Mon coéquipier @dbsenzo, étudiant en ingénierie logicielle, et moi avons collaboré pour explorer les complexités du Machine Learning en utilisant l'environnement DeepRacer.
 
 Le concours s'est déroulé sur trois jours intensifs, les 12, 13 et 14 décembre, où le temps était une ressource aussi précieuse que les données d'entraînement elles-mêmes. Nous étions contraints par un nombre limité d'heures d'entraînement, ce qui nous a obligés à adopter une approche stratégique et réfléchie. Notre aventure nous a emmenés à travers diverses expérimentations avec des hyperparamètres et des fonctions de récompense, nous permettant de plonger dans les détails techniques qui déterminent les performances des modèles de Machine Learning.
 
-Ce rapport a pour objectif de présenter notre approche méthodique, l'évolution de notre compréhension et les choix techniques qui nous ont menés à cette réussite. Il détaille notre parcours depuis les premières heures d'essais, en passant par la transition d'un modèle à déplacements continus à un modèle à déplacements discrets, jusqu'à la mise au point d'une fonction de récompense personnalisée qui a été la clé de notre performance.
+Ce rapport a pour objectif de présenter notre approche méthodique, l'évolution de notre compréhension et les choix techniques qui nous ont menés à obtenir la 2ème place. Il détaille notre parcours depuis les premières heures d'essais, en passant par la transition d'un modèle à déplacements continus à un modèle à déplacements discrets, jusqu'à la mise au point d'une fonction de récompense personnalisée qui a été la clé de notre performance.
 
-Nous aborderons la manière dont nous avons commencé par comprendre les hyperparamètres et leur impact, l'importance d'une fonction de récompense bien conçue, et comment l'adaptation d'une stratégie déjà existnate a été affinée pour convenir à notre modèle spécifique. Ce rapport témoigne non seulement de notre parcours d'apprentissage mais aussi de la richesse de l'apprentissage par renforcement et de son application pratique dans le cadre d'une compétition.
+Nous aborderons la manière dont nous avons commencé par comprendre les hyperparamètres et leur impact, l'importance d'une fonction de récompense bien conçue, et comment l'adaptation d'une stratégie déjà existante a été affinée pour convenir à notre modèle spécifique. Ce rapport témoigne non seulement de notre parcours d'apprentissage mais aussi de la richesse du Machine Learning et de son application pratique dans le cadre d'une compétition.
 
 # I. Hyperparamètres
 
@@ -25,7 +25,7 @@ Nous avons entamé notre quête avec l'exploration des hyperparamètres suivants
     
 2.  **Entropy** : Réglée à 0.01, cette valeur visait à introduire un niveau d'aléatoire dans la sélection des actions, encourageant l'exploration sans dépasser l'exploitation des connaissances déjà acquises.
     
-3.  **Discount factor** : Avec un facteur proche de l'unité (0.999), notre modèle était encouragé à prendre en considération les récompenses futures, ce qui est notamment utile pour des tâches où la gratification n'est pas immédiate.
+3.  **Discount factor** : Avec un facteur proche de 1 (0.999), notre modèle était encouragé à prendre en considération les récompenses futures, ce qui est notamment utile pour des tâches où la gratification n'est pas immédiate.
 
 4.  **Loss type** : Nous avons opté pour la fonction de perte Huber, une combinaison entre l'erreur quadratique moyenne pour les petites erreurs et l'erreur absolue moyenne pour les grandes, réduisant ainsi la sensibilité aux anomalies.
     
@@ -35,13 +35,13 @@ Nous avons entamé notre quête avec l'exploration des hyperparamètres suivants
     
 7.  **Number of epochs** : En fixant le nombre d'epochs à 5, nous avons veillé à ce que le modèle réexamine les expériences recueillies plusieurs fois, renforçant l'apprentissage sans tomber dans le surajustement.
 
-Au cours de cette phase initiale, nous avons également utilisé la fonction de récompense par défaut pour comprendre comment ces hyperparamètres interagissaient avec la dynamique de la piste. À travers un processus d'essais et d'erreurs, nous avons commencé à saisir comment chaque paramètre affectait la capacité du modèle à apprendre de ses actions et à s'améliorer.
+Au cours de cette phase initiale, nous avons également utilisé la fonction de récompense par défaut pour comprendre comment ces hyperparamètres interagissaient avec la dynamique de la piste. À travers de nombreux essais et erreurs, nous avons commencé à saisir comment chaque paramètre affectait la capacité du modèle à apprendre de ses actions et à s'améliorer.
 
-Nos premières sessions d'entraînement nous ont permis de construire une solide fondation de connaissances. Cependant, il est devenu évident que pour surpasser nos concurrents, nous devions aller au-delà de la compréhension théorique pour affiner notre modèle de manière plus stratégique. Il était temps d'optimiser notre approche et de personnaliser notre fonction de récompense, ce qui nous a conduit à la prochaine phase de notre parcours : l'optimisation et le passage à un modèle à déplacements discrets.
+Nos premières sessions d'entraînement nous ont permis de construire une solide base de connaissances. Cependant, il est devenu évident que pour obtenir de meilleurs résultats et un meilleur temps sur le circuit, nous devions aller au-delà de la compréhension théorique pour affiner notre modèle de manière plus stratégique. Il était temps d'optimiser notre approche et de personnaliser notre fonction de récompense, ce qui nous a conduit à la prochaine phase de notre parcours : l'optimisation et le passage à un modèle à déplacements discrets.
 
 # II. Optimisations et déplacements discrets
 
-Après avoir établi une compréhension de base des hyperparamètres et de leur influence sur le processus d'apprentissage, nous avons entamé la deuxième phase de notre projet : l'optimisation du modèle. Cette étape a été caractérisée par une transition stratégique des déplacements continus vers un modèle à déplacements discrets, une décision qui a grandement influencé la performance de notre modèle.
+Après avoir établi une compréhension de base des hyperparamètres et de leur influence sur le processus d'apprentissage, nous avons entamé la deuxième phase de notre projet : l'optimisation du modèle. Cette étape a été caractérisée par une transition des déplacements continus vers un modèle à déplacements discrets, une décision qui a grandement influencé la performance de notre modèle.
 
 Dans notre exploration initiale, nous avons entraîné notre modèle en utilisant des actions continues, où le modèle avait la liberté de choisir n'importe quel angle de rotation pour naviguer sur la piste. Cette flexibilité semblait avantageuse au premier abord, car elle permettait une adaptation fine à la trajectoire. Cependant, cette approche a également introduit une complexité significative. La tendance du modèle à opter pour des manœuvres subtiles et fréquentes a mené à un comportement le poussant souvent à faire des zigzags, nuisant à la vitesse globale et à l'efficacité du parcours.
 
@@ -77,7 +77,7 @@ En fin de compte, l'adoption d'un modèle à déplacements discrets a été une 
 
 # III. Meilleur système de récompenses et impact
 
-La phase finale de notre parcours s'est concentrée sur la conception et l'implémentation d'une fonction de récompense personnalisée. Cette étape a été essentielle pour affiner le comportement de notre modèle et pour maximiser ses performances sur la piste.
+La phase finale de notre parcours s'est concentrée sur la conception et l'implémentation d'une fonction de récompense efficace. Cette étape a été essentielle pour affiner le comportement de notre modèle et pour maximiser ses performances sur la piste.
 
 **3.1 Comment fonctionne notre fonction de reward ?**
 
@@ -85,7 +85,7 @@ Inspirés par la fonction de reward utilisée par l'équipe IndestruciRacer en 2
 
 Ici, nous allons détailler le fonctionnement de notre fonction, en soulignant comment elle intègre la logique des waypoints pour optimiser la trajectoire de notre véhicule.
 
-La fonction `identify_corner` joue un rôle fondamental dans notre stratégie de récompense. Elle utilise les waypoints pour déterminer la configuration de la piste devant la voiture et ajuste la récompense en fonction. Voici un exemple concret de la façon dont cela fonctionne:
+La fonction `identify_corner` joue un rôle fondamental dans notre stratégie de récompense. Elle utilise les waypoints pour déterminer la configuration de la piste devant la voiture et ajuste la récompense en fonction. Voici un exemple de la façon dont cela fonctionne:
 
 
 ```python
@@ -97,7 +97,7 @@ def  identify_corner(waypoints, closest_waypoints, future_step):
 	...
 ```
 
-Dans cet extrait, la fonction calcule l'orientation future (`heading_future`) et la distance jusqu'au prochain waypoint éloigné (`dist_future`). Ces calculs sont utilisés pour évaluer si un virage se profile à l'horizon, ce qui influencera la vitesse que le modèle devrait adopter.
+Dans cet extrait, la fonction calcule l'orientation future (`heading_future`) et la distance jusqu'au prochain waypoint éloigné (`dist_future`). Ces calculs sont utilisés pour évaluer si un virage se profile à l'horizon, ce qui influencera la vitesse que le modèle devra adopter.
 
 Ensuite, la fonction `select_speed` utilise ces informations pour décider si la voiture doit accélérer ou ralentir:
 
@@ -135,7 +135,7 @@ Dans ces lignes, la variable `reward` est ajustée pour inciter la voiture à re
 De plus, notre fonction de reward a été structurée autour de plusieurs composants clés :
 
 -   **Anticipation des virages** : En utilisant `FUTURE_STEP`, notre modèle était capable d'anticiper les virages à venir et d'ajuster sa vitesse et sa trajectoire en conséquence.
--   **Différenciation entre les virages et les lignes droites** : Grâce à la détection des virages avec `TURN_THRESHOLD`, nous avons pu moduler les récompenses pour encourager une approche prudente dans les virages et une accélération sur les segments droits.
+-   **Différenciation entre les virages et les lignes droites** : Grâce à la détection des virages avec `TURN_THRESHOLD`, nous avons pu moduler les récompenses pour encourager une approche prudente dans les virages et une accélération sur les lignes droits.
 -   **Adaptation de la vitesse** : Le `SPEED_THRESHOLD` nous a permis de récompenser les vitesses optimales, en évitant à la fois la lenteur excessive et les excès pouvant entraîner des dérapages ou des sorties de piste.
 -   **Bonus pour les lignes droites** : Avec le `STRAIGHT_SPEED_BONUS`, notre modèle a été incité à maintenir des vitesses élevées sur les portions droites, améliorant ainsi les temps au tour.
 
@@ -154,16 +154,16 @@ Nous avons observé que notre véhicule avait appris à naviguer sur la piste av
 
 **3.3 Leçons tirées et perspectives futures**
 
-Ce processus de personnalisation a souligné l'importance d'une compréhension profonde de la manière dont les fonctions de récompense influencent l'apprentissage par renforcement. Chaque composant de la fonction a été soigneusement examiné et testé pour garantir qu'il contribuait positivement à l'objectif global de notre modèle.
+Ce processus de personnalisation a souligné l'importance d'une compréhension de la manière dont les fonctions de récompense influencent l'apprentissage par renforcement. Chaque composant de la fonction a été conçu testé pour garantir qu'il contribuait positivement à l'objectif global de notre modèle.
 
-Cette phase de notre projet a révélé l'importance de l'itération et de l'expérimentation. Les ajustements successifs de la fonction de récompense, basés sur de nombreuses observations et des analyses des performances, ont été nécessaires afin de créer un modèle fiable qui répond aux exigences.
+Cette phase de notre projet a révélé l'importance de l'expérimentation. Les ajustements successifs de la fonction de récompense, basés sur de nombreuses observations et des analyses des performances, ont été nécessaires afin de créer un modèle fiable.
 
-Enfin, notre exploration dans la personnalisation de la fonction de reward a non seulement été fructueuse en termes de résultats, mais elle a également enrichi notre compréhension de l'apprentissage par renforcement. Elle a souligné le pouvoir d'une approche réfléchie et mesurée dans le développement de modèles de Machine Learning, et elle promet des avancées passionnantes dans nos futures initiatives de recherche et de développement en intelligence artificielle.
+Enfin, notre exploration dans la personnalisation de la fonction de reward a non seulement été fructueuse en termes de résultats, mais elle a également enrichi notre compréhension de l'apprentissage par renforcement.
 
 # Conclusion
 
-La participation au concours AWS DeepRacer organisé par AWS et Accenture a été une expérience formatrice et très intéressante pour nous. Elle nous a permis de plonger dans le monde du Machine Learning et de concrétiser nos connaissances théoriques en compétences pratiques.
+Notre participation au concours AWS DeepRacer organisé par AWS et Accenture a été une expérience formatrice et très intéressante pour nous. Elle nous a permis de plonger dans le monde du Machine Learning et de concrétiser nos connaissances théoriques en compétences pratiques.
 
-Chaque étape de cette aventure a contribué à façonner un modèle robuste et efficace. Nous avons mis en lumière l'importance de comprendre l'impact des hyperparamètres, l'efficacité des déplacements discrets pour simplifier et concentrer l'apprentissage sur des circuits simples, et la puissance d'une fonction de reward bien conçue pour guider le modèle vers un temps au tour avantageux.
+Chaque étape de cette aventure a contribué à créer de A à Z un modèle robuste et efficace. Nous avons mis en lumière l'importance de comprendre l'impact des hyperparamètres, l'efficacité des déplacements discrets pour simplifier et concentrer l'apprentissage sur des circuits simples, et la puissance d'une fonction de reward bien conçue pour guider le modèle vers un temps au tour avantageux.
 
-Pour terminer, nous tenons à exprimer notre gratitude envers AWS et Accenture pour la mise en place de cette compétition qui nous a permis de découvrir le Machine Learning et mettre à l'épreuve nos compétences tout en prenant du plaisir. Nous sommes impatients d'appliquer les leçons apprises ici à de futurs défis et de continuer à explorer les vastes horizons de l'intelligence artificielle. Notre expérience à ce concours est un témoignage de l'impact que l'IA peut avoir, et nous sommes inspirés à poursuivre cette voie prometteuse.
+Pour terminer, nous tenons à exprimer notre gratitude envers AWS et Accenture pour la mise en place de cette compétition qui nous a permis de découvrir le Machine Learning et mettre à l'épreuve nos compétences tout en prenant du plaisir. Nous sommes impatients d'appliquer les leçons apprises ici à de futurs défis et de continuer à explorer les vastes horizons de l'intelligence artificielle. Notre expérience à ce concours est un témoignage de l'impact que l'IA peut avoir, et nous sommes motivés à poursuivre cette voie prometteuse.
